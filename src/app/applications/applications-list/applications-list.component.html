@@ -1,0 +1,8 @@
+<h1 class="mat-headline">Applications</h1>
+<mat-divider class="mb"></mat-divider>
+<div class="flex-grid mb">
+  <ng-container *ngFor="let application of applications; let i = index">
+    <app-application-card [application]="application" [index]="i"></app-application-card>
+  </ng-container>
+</div>
+<button mat-raised-button color="primary">Add application</button>
