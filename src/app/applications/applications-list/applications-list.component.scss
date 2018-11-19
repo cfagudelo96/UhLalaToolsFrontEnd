@@ -1,6 +1,5 @@
 .flex-grid {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 
@@ -8,8 +7,6 @@
   flex: 1;
 }
 
-@media (max-width: 400px) {
-  .flex-grid {
-    display: block;
-  }
+.list-element {
+  margin: 1em;
 }

@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>{{application.name}}</mat-card-title>
   </mat-card-header>
-  <img mat-card-image src="{{'/assets/images/application-' + (index % 9) + '.jpg'}}">
+  <img mat-card-image src="{{'/assets/images/application-' + (index % 9) + '.jpg'}}" class="card-image">
   <mat-card-content *ngIf="application.description">
     <p>{{application.description}}</p>
   </mat-card-content>

@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { MatDividerModule } from '@angular/material/divider';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatInputModule } from '@angular/material';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { ApplicationsRoutingModule } from './applications-routing.module';
 import { ApplicationsListComponent } from './applications-list/applications-list.component';
@@ -21,10 +24,13 @@ import { ApplicationDetailComponent } from './application-detail/application-det
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     MatDividerModule,
     MatCardModule,
     MatButtonModule,
     MatGridListModule,
+    MatInputModule,
+    MatFormFieldModule,
     ApplicationsRoutingModule
   ]
 })
