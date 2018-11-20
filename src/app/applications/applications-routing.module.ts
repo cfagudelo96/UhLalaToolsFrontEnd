@@ -6,6 +6,7 @@ import { ApplicationFormComponent } from './application-form/application-form.co
 import { ApplicationDetailComponent } from './application-detail/application-detail.component';
 
 import { ApplicationResolverService } from './application-resolver.service';
+import { WebApplicationFormComponent } from './web-application-form/web-application-form.component';
 
 const routes: Routes = [
   { path: 'applications', component: ApplicationsListComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
     path: 'applications/:id', component: ApplicationDetailComponent, resolve: {
       application: ApplicationResolverService
     }
-  }
+  },
+  { path: 'applications/:id/web-application/new', component: WebApplicationFormComponent }
 ];
 
 @NgModule({

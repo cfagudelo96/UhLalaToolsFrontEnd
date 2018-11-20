@@ -1,0 +1,14 @@
+.form-group-container {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100%;
+  * {
+    width: 100%;
+  }
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}

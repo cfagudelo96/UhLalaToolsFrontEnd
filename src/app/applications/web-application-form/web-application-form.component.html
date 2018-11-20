@@ -1,0 +1,13 @@
+<h1 class="mat-headline">Define web application for {{application.name}}</h1>
+<mat-divider class="mb-3"></mat-divider>
+<form [formGroup]="webApplication" (ngSubmit)="onSubmit()" class="form">
+  <div class="form-group-container">
+    <mat-form-field>
+      <input matInput placeholder="Enter the web application URL" formControlName="url" required>
+      <mat-error *ngIf="url.invalid">{{getControlErrorMessage('name')}}</mat-error>
+    </mat-form-field>
+  </div>
+  <button type="submit" [disabled]="!webApplication.valid" mat-raised-button color="primary">
+    Save
+  </button>
+</form>

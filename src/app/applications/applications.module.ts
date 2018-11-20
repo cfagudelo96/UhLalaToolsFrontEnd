@@ -14,13 +14,17 @@ import { ApplicationsListComponent } from './applications-list/applications-list
 import { ApplicationFormComponent } from './application-form/application-form.component';
 import { ApplicationCardComponent } from './application-card/application-card.component';
 import { ApplicationDetailComponent } from './application-detail/application-detail.component';
+import { WebApplicationCardComponent } from './web-application-card/web-application-card.component';
+import { WebApplicationFormComponent } from './web-application-form/web-application-form.component';
 
 @NgModule({
   declarations: [
     ApplicationsListComponent,
     ApplicationFormComponent,
     ApplicationCardComponent,
-    ApplicationDetailComponent
+    ApplicationDetailComponent,
+    WebApplicationCardComponent,
+    WebApplicationFormComponent
   ],
   imports: [
     CommonModule,

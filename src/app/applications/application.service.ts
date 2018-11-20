@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 
 import { Application } from './shared/application.model';
 import { ErrorHandlingService } from '../services/error-handling.service';
+import { WebApplication } from './shared/web-application.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,6 +31,12 @@ export class ApplicationService {
   getApplication(id: string): Observable<Application> {
     return this.http.get<Application>(`${this.applicationsUrl}/${id}`).pipe(
       catchError(this.errorHandlingService.handleError<Application>('get the application'))
+    );
+  }
+
+  getWebApplicationFromApplication(id: string): Observable<WebApplication> {
+    return this.http.get<WebApplication>(`${this.applicationsUrl}/${id}/web-application`).pipe(
+      catchError(this.errorHandlingService.handleError<WebApplication>('get the web application'))
     );
   }
 
