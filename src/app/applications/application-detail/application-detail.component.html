@@ -1,3 +1,22 @@
-<p>
-  application-detail works!
-</p>
+<h1 class="mat-headline">{{application.name}}</h1>
+<ng-container *ngIf="application.description">
+  <h3 class="mat-h3">Description</h3>
+  <p>{{application.description}}</p>
+</ng-container>
+<div class="row">
+  <div class="col-md-6">
+
+  </div>
+  <div class="col-md-6">
+
+  </div>
+</div>
+<div class="mt-3">
+  <button mat-raised-button color="primary" class="mr-3">
+    Define web application
+  </button>
+  <button mat-raised-button color="primary">
+    Define mobile application
+  </button>
+</div>
+

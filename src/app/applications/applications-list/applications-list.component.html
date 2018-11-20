@@ -1,10 +1,10 @@
 <h1 class="mat-headline">Applications</h1>
-<mat-divider [ngStyle]="{'margin-bottom': '1em'}"></mat-divider>
-<div class="flex-grid">
+<mat-divider class="mb-3"></mat-divider>
+<div class="mb-3 row">
   <ng-container *ngFor="let application of applications; let i = index">
-    <app-application-card [application]="application" [index]="i" class="list-element"></app-application-card>
+    <app-application-card [application]="application" [index]="i" class="col-md-4 mt-2 mb-2"></app-application-card>
   </ng-container>
 </div>
-<div [ngStyle]="{'margin': '1em'}">
+<div>
   <button routerLink="/applications/new" mat-raised-button color="primary">Add application</button>
 </div>

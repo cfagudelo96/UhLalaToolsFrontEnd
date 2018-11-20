@@ -13,7 +13,9 @@ export class ErrorHandlingService {
   public handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
-      this.snackbarService.open(`Error trying to ${operation}: ${error.message}`);
+      this.snackbarService.open(`Error trying to ${operation}: ${error.error.message}`, 'Close', {
+        duration: 3000
+      });
       return of(result as T);
     };
   }
