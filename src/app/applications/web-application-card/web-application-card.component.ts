@@ -10,9 +10,10 @@ import { WebApplication } from '../shared/web-application.model';
 export class WebApplicationCardComponent implements OnInit {
   @Input() webApplication: WebApplication;
 
+  randomNumberForImage = (Math.floor(Math.random() * 8));
+
   constructor() { }
 
   ngOnInit() {
   }
-
 }

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { Application } from '../shared/application.model';
 import { WebApplication } from '../shared/web-application.model';
 import { ApplicationService } from '../application.service';
+import { WebApplicationService } from '../web-application.service';
 
 @Component({
   selector: 'app-application-detail',
@@ -18,9 +19,9 @@ export class ApplicationDetailComponent implements OnInit {
   private gotWebApplicationResponse;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
-    private applicationService: ApplicationService
+    private applicationService: ApplicationService,
+    private webApplicationService: WebApplicationService
   ) { }
 
   ngOnInit() {
@@ -36,5 +37,17 @@ export class ApplicationDetailComponent implements OnInit {
 
   hasWebApplication(): boolean {
     return this.gotWebApplicationResponse && this.webApplication != null;
+  }
+
+  canCreateWebApplication(): boolean {
+    return this.gotWebApplicationResponse && !this.webApplication;
+  }
+
+  onWebApplicationSubmitted(webApplication: WebApplication) {
+    this.gotWebApplicationResponse = false;
+    this.webApplicationService.createWebApplication(webApplication).subscribe(createdWebApplication => {
+      this.webApplication = createdWebApplication;
+      this.gotWebApplicationResponse = true;
+    });
   }
 }

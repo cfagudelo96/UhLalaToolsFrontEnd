@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { WebApplicationService } from '../web-application.service';
 
 import { Application } from '../shared/application.model';
-import { Router } from '@angular/router';
+import { WebApplication } from '../shared/web-application.model';
 
 @Component({
   selector: 'app-web-application-form',
@@ -13,12 +12,12 @@ import { Router } from '@angular/router';
 export class WebApplicationFormComponent implements OnInit {
   @Input() application: Application;
 
+  @Output() webApplicationSubmitted: EventEmitter<WebApplication> = new EventEmitter();
+
   webApplicationForm: FormGroup;
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private webApplicationService: WebApplicationService
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
@@ -38,11 +37,14 @@ export class WebApplicationFormComponent implements OnInit {
 
   onSubmit() {
     if (this.webApplicationForm.valid) {
-      this.webApplicationService.createWebApplication(this.webApplicationForm.value).subscribe(webApplication => {
-        if (webApplication) {
-          this.router.navigate(['/applications', this.application._id]);
-        }
-      });
+      this.webApplicationSubmitted.emit(this.webApplicationForm.value);
     }
+  }
+
+  getControlErrorMessage(formControlName: string): string {
+    if (this.webApplicationForm.get(formControlName).hasError('required')) {
+      return 'You must enter a value';
+    }
+    return '';
   }
 }

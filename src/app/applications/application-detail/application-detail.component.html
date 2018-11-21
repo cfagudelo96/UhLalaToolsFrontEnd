@@ -1,23 +1,16 @@
 <h1 class="mat-headline">{{application.name}}</h1>
 <ng-container *ngIf="application.description">
-  <h3 class="mat-h3">Description</h3>
+  <h2 class="mat-h2">Description</h2>
   <p>{{application.description}}</p>
 </ng-container>
+<mat-divider class="mb-3"></mat-divider>
 <div class="row">
   <div class="col-md-6">
-    <app-web-application-card *ngIf="hasWebApplication()" [webApplication]="webApplication"></app-web-application-card>
+    <app-web-application-card [webApplication]="webApplication" *ngIf="hasWebApplication()"></app-web-application-card>
+    <app-web-application-form [application]="application" (webApplicationSubmitted)="onWebApplicationSubmitted($event)"
+      *ngIf="canCreateWebApplication()"></app-web-application-form>
   </div>
   <div class="col-md-6">
 
   </div>
 </div>
-<div class="mt-3">
-  <button [routerLink]="['/applications/' + application._id + '/web-application/new']" *ngIf="!hasWebApplication()"
-    mat-raised-button color="primary" class="mr-3 mb-3">
-    Define web application
-  </button>
-  <button mat-raised-button color="primary">
-    Define mobile application
-  </button>
-</div>
-

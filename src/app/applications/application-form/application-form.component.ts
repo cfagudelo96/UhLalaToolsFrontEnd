@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { ApplicationService } from '../application.service';
-import { Application } from '../shared/application.model';
 
 @Component({
   selector: 'app-application-form',
