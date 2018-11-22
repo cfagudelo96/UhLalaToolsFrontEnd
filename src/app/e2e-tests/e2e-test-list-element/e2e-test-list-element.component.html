@@ -1,8 +1,6 @@
-<mat-list-item >
+<mat-list-item>
   <h4 mat-line>{{e2eTest.name}}</h4>
   <p mat-line *ngIf="e2eTest.description">{{e2eTest.description}}</p>
-  <span class="float-right">
-    <button *ngIf="!e2eTest.generated" mat-raised-button color="accent">Generate script</button>
-    <button *ngIf="e2eTest.generated && !e2eTest.executed" mat-raised-button color="accent">Execute script</button>
-  </span>
+  <span *ngIf="!e2eTest.generated" style="color: #673ab7;" class="mat-small float-right">Script not generated</span>
+  <span *ngIf="e2eTest.generated && !e2eTest.executed" style="color: #673ab7;" class="mat-small float-right">Not executed</span>
 </mat-list-item>

@@ -30,6 +30,20 @@ export class E2ETestService {
     );
   }
 
+  generateE2ETestsScript(webApplication: WebApplication, version: string): Observable<{ message: string }> {
+    const url = `${environment.apiUrl}/web-applications/${webApplication._id}/e2e-tests/generate-scripts`;
+    return this.http.patch<{ message: string }>(url, { version: version }, httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<{ message: string }>('generate the E2E tests scripts'))
+    );
+  }
+
+  executeE2ETests(webApplication): Observable<{ message: string }> {
+    const url = `${environment.apiUrl}/web-applications/${webApplication._id}/e2e-tests/execute-scripts`;
+    return this.http.patch<{ message: string }>(url, null, httpOptions).pipe(
+      catchError(this.errorHandlingService.handleError<{ message: string }>('execute the E2E tests scripts'))
+    );
+  }
+
   createE2ETest(e2eTest: E2ETest): Observable<E2ETest> {
     return this.http.post<E2ETest>(this.e2eTestsUrl, e2eTest, httpOptions).pipe(
       catchError(this.errorHandlingService.handleError<E2ETest>('create the E2E Test'))

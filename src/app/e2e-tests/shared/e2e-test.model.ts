@@ -1,6 +1,6 @@
 import { Document } from '../../shared/document.model';
 
-export const COMMAND_TYPES: string[] = ['click', 'keys', 'selectByText', 'waitVisible', 'assertExists', 'assertTextMatches'];
+export const COMMAND_TYPES: string[] = ['goTo', 'click', 'keys', 'selectByText', 'waitVisible', 'assertExists', 'assertTextMatches'];
 
 export const COMMAND_TYPES_VALUE_REQUIRED = {
   'keys': {

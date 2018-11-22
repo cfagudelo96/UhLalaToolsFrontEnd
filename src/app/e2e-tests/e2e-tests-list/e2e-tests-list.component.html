@@ -2,4 +2,7 @@
   <h3 mat-subheader>E2E Tests</h3>
   <app-e2e-test-list-element *ngFor="let e2eTest of e2eTests" [e2eTest]="e2eTest"></app-e2e-test-list-element>
 </mat-list>
-<button [routerLink]="newE2ETestFormUrl" mat-raised-button color="primary">Add E2E Test</button>
+<button [routerLink]="newE2ETestFormUrl" mat-raised-button color="primary" class="mr-2">Add E2E Test</button>
+<button *ngIf="hasScriptsToGenerate()" (click)="generateScripts()" mat-raised-button color="primary">Generate scripts</button>
+<button *ngIf="canExecuteScripts()"  (click)="executeE2ETests()" mat-raised-button color="primary">Execute tests</button>
+<a *ngIf="allTestsExecuted()" [href]="getReportDownloadUrl()" target="_blank" mat-raised-button color="primary">Download report</a>
