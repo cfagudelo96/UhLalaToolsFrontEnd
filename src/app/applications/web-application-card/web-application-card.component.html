@@ -1,8 +1,10 @@
 <mat-card>
   <mat-card-header>
     <mat-card-title>Web application</mat-card-title>
+    <mat-card-subtitle><a [href]="webApplication.url" target="_blank">{{webApplication.url}}</a></mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="'/assets/images/application-' + randomNumberForImage + '.jpg'" class="card-image">
-  <mat-card-actions>
-  </mat-card-actions>
+  <mat-card-content>
+    <app-e2e-tests-list [webApplication]="webApplication"></app-e2e-tests-list>
+  </mat-card-content>
 </mat-card>

@@ -1,0 +1,5 @@
+<mat-list>
+  <h3 mat-subheader>E2E Tests</h3>
+  <app-e2e-test-list-element *ngFor="let e2eTest of e2eTests" [e2eTest]="e2eTest"></app-e2e-test-list-element>
+</mat-list>
+<button [routerLink]="newE2ETestFormUrl" mat-raised-button color="primary">Add E2E Test</button>

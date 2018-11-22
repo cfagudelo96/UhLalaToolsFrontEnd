@@ -1,0 +1,54 @@
+<h1 class="mat-headline">Create E2E Test</h1>
+<mat-divider class="mb-3"></mat-divider>
+<form #endToEndTestForm="ngForm" (ngSubmit)="onSubmit()" class="form">
+  <div class="form-group-container">
+    <mat-form-field>
+      <input matInput [(ngModel)]="newEndToEndTest.name" name="name" placeholder="Enter the E2E test name" required>
+    </mat-form-field>
+  </div>
+  <div class="form-group-container">
+    <mat-form-field>
+      <textarea matInput [(ngModel)]="newEndToEndTest.description" name="description" placeholder="Give a description to the E2E Test..."></textarea>
+    </mat-form-field>
+  </div>
+  <mat-list>
+    <h3 mat-subheader>Commands</h3>
+    <mat-list-item *ngFor="let command of newEndToEndTest.commands; index as i" class="mt-3 mb-5">
+      <div class="row w-100">
+        <div class="col-md-3 col-xs-12">
+          <div class="form-group-container">
+            <mat-form-field>
+              <mat-select [(ngModel)]="newEndToEndTest.commands[i].type" [name]="'command-' + i" required>
+                <mat-option *ngFor="let commandType of commandTypes" [value]="commandType">{{commandType}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-md-9 col-xs-12">
+          <div class="form-group-container">
+            <mat-form-field>
+              <input matInput [(ngModel)]="newEndToEndTest.commands[i].selector" [ngModelOptions]="{standalone: true}"
+                placeholder="Selector" type="text" required>
+              <mat-hint>Enter the appropriate selector for the command</mat-hint>
+              <mat-icon matSuffix (click)="onRemoveCommand(i)">clear</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="commandTypesValueRequired[command.type]" class="col">
+        <mat-form-field>
+          <input matInput [(ngModel)]="newEndToEndTest.commands[i].value" [ngModelOptions]="{standalone: true}" placeholder="Value"
+            [type]="commandTypesValueRequired[command.type].valueType"
+            [required]="commandTypesValueRequired[command.type].required">
+          <mat-hint>This is the appropriate value for the command</mat-hint>
+        </mat-form-field>
+      </div>
+    </mat-list-item>
+  </mat-list>
+  <div class="mb-3">
+    <button (click)="onAddCommand();" type="button" mat-raised-button color="accent">Add command</button>
+  </div>
+  <div>
+    <button type="submit" [disabled]="endToEndTestForm.form.invalid" mat-raised-button color="primary">Submit</button>
+  </div>
+</form>
