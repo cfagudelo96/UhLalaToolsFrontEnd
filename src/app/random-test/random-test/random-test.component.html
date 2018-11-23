@@ -8,9 +8,9 @@
       <span *ngIf="!randomTest.generated" style="color: #673ab7;" class="mat-small float-right">Script not generated</span>
       <span *ngIf="randomTest.generated && !randomTest.executed" style="color: #673ab7;" class="mat-small float-right">Not executed</span>
     </mat-list-item>
-    <h4 mat-line *ngIf="randomTestErrors.length == 0">There were no errors in the random test execution</h4>
+    <h4 mat-line *ngIf="randomTest.executed && randomTestErrors.length == 0">There were no errors in the random test execution</h4>
     <mat-list-item *ngFor="let randomTestError of randomTestErrors">
-      <p mat-line>{{randomTestError.error}}</p>
+      <button (click)="openErrorDialog(randomTestError)" mat-raised-button color="accent">See error's #{{randomTestError._id}} report</button>
     </mat-list-item>
     <button *ngIf="!randomTest.generated" (click)="generateScript()" mat-raised-button color="primary">Generate script</button>
     <button *ngIf="randomTest.generated && !randomTest.executed && !randomTestExecutionSent" (click)="executeRandomTest()" mat-raised-button color="primary">Execute test</button>

@@ -32,7 +32,7 @@ export class E2ETestsListComponent implements OnInit {
   }
 
   allTestsExecuted(): boolean {
-    return this.e2eTests.every(e2eTest => e2eTest.executed);
+    return this.e2eTests.length > 0 && this.e2eTests.every(e2eTest => e2eTest.executed);
   }
 
   canExecuteScripts(): boolean {

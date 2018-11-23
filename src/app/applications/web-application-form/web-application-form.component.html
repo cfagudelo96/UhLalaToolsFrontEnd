@@ -6,7 +6,50 @@
       <mat-error *ngIf="url.invalid">{{getControlErrorMessage('url')}}</mat-error>
     </mat-form-field>
   </div>
-  <button type="submit" [disabled]="!webApplicationForm.valid" mat-raised-button color="primary">
+  <div *ngIf="chromeCapabilitiesDefined" [formGroup]="chromeCapabilitiesForm">
+    <h4 class="mat-h4">Chrome capabilities</h4>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Enter the max number of instances" formControlName="maxInstances" required>
+    </mat-form-field>
+    <div [formGroup]="chromeCapabilitiesForm.get('chromeOptions').get('args')">
+      <mat-form-field class="d-block">
+        <mat-select placeholder="Window size in testing" formControlName="windowSize">
+          <mat-option *ngFor="let windowSize of WINDOW_SIZES" [value]="windowSize.value">
+            {{windowSize.display}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox formControlName="headless" class="d-block mb-2">Use headless mode in testing</mat-checkbox>
+      <mat-checkbox formControlName="disableExtensions" class="d-block mb-2">Disable extensions in testing</mat-checkbox>
+      <mat-checkbox formControlName="disablePopups" class="d-block mb-2">Disable popups in testing</mat-checkbox>
+      <mat-checkbox formControlName="disableInfobars" class="d-block mb-4">Disable infobars in testing</mat-checkbox>
+    </div>
+  </div>
+  <div *ngIf="firefoxCapabilitiesDefined" [formGroup]="firefoxCapabilitiesForm">
+    <h4 class="mat-h4">Firefox capabilities</h4>
+    <mat-form-field>
+      <input type="number" matInput placeholder="Enter the max number of instances" formControlName="maxInstances"
+        required>
+    </mat-form-field>
+    <div [formGroup]="firefoxCapabilitiesForm.get('firefoxOptions').get('args')">
+      <mat-form-field class="d-block">
+        <mat-select formControlName="windowSize" placeholder="Window size in testing">
+          <mat-option *ngFor="let windowSize of WINDOW_SIZES" [value]="windowSize.value">
+            {{windowSize.display}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox formControlName="headless" class="d-block mb-2">Use headless mode in testing</mat-checkbox>
+    </div>
+
+  </div>
+  <button type="submit" [disabled]="!webApplicationForm.valid" mat-raised-button color="primary" class="mr-2">
     Save
+  </button>
+  <button type="button" *ngIf="!chromeCapabilitiesDefined" (click)="addChromeCapabilities()" mat-raised-button color="primary" class="mr-2">
+    Define Chrome capabilities
+  </button>
+  <button type="button" *ngIf="!firefoxCapabilitiesDefined" (click)="addFirefoxCapabilities()" mat-raised-button color="primary">
+    Define Firefox capabilities
   </button>
 </form>
