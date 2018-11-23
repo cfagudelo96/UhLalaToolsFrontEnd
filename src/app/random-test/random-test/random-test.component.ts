@@ -5,6 +5,8 @@ import { WebApplication } from '../../applications/shared/web-application.model'
 
 import { RandomTest } from '../shared/random-test.model';
 import { RandomTestService } from '../random-test.service';
+import { RandomTestError } from '../shared/random-test-error.model';
+import { RandomTestErrorService } from '../random-test-error.service';
 
 @Component({
   selector: 'app-random-test',
@@ -18,7 +20,14 @@ export class RandomTestComponent implements OnInit {
 
   randomTestLoaded = false;
 
-  constructor(public snackBar: MatSnackBar, private randomTestService: RandomTestService) { }
+  randomTestExecutionSent = false;
+
+  randomTestErrors: RandomTestError[];
+
+  constructor(public snackBar: MatSnackBar, private randomTestService: RandomTestService,
+    private randomTestErrorService: RandomTestErrorService) {
+    this.randomTestErrors = [];
+  }
 
   ngOnInit() {
     this.getRandomTest();
@@ -32,6 +41,7 @@ export class RandomTestComponent implements OnInit {
   }
 
   executeRandomTest() {
+    this.randomTestExecutionSent = true;
     this.randomTestService.executeRandomTest(this.randomTest._id).subscribe(message => {
       this.snackBar.open(message.message, 'Close', { duration: 3000 });
       this.getRandomTest();
@@ -46,6 +56,11 @@ export class RandomTestComponent implements OnInit {
     this.randomTestService.getRandomTestByWebApplication(this.webApplication._id).subscribe(randomTest => {
       this.randomTest = randomTest;
       this.randomTestLoaded = true;
+      if (this.randomTest.executed) {
+        this.randomTestErrorService.getRandomTestErrorsFromRandomTest(this.randomTest._id).subscribe(
+          randomTestErrors => this.randomTestErrors = randomTestErrors
+        );
+      }
     });
   }
 }

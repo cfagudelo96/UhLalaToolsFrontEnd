@@ -9,7 +9,6 @@ import { environment } from '../../environments/environment';
 import { ErrorHandlingService } from '../services/error-handling.service';
 
 import { RandomTest } from './shared/random-test.model';
-import { WebApplication } from '../applications/shared/web-application.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
