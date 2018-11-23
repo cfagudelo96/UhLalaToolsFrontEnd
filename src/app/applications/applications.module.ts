@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../shared/shared.module';
 import { E2ETestsModule } from '../e2e-tests/e2e-tests.module';
+import { RandomTestModule } from '../random-test/random-test.module';
 
 import { ApplicationsRoutingModule } from './applications-routing.module';
 import { ApplicationsListComponent } from './applications-list/applications-list.component';
@@ -27,6 +28,7 @@ import { WebApplicationFormComponent } from './web-application-form/web-applicat
     ReactiveFormsModule,
     SharedModule,
     E2ETestsModule,
+    RandomTestModule,
     ApplicationsRoutingModule
   ]
 })

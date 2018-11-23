@@ -6,5 +6,7 @@
   <img mat-card-image [src]="'/assets/images/application-' + randomNumberForImage + '.jpg'" class="card-image">
   <mat-card-content>
     <app-e2e-tests-list [webApplication]="webApplication"></app-e2e-tests-list>
+    <mat-divider class="mt-3 mb-3"></mat-divider>
+    <app-random-test [webApplication]="webApplication"></app-random-test>
   </mat-card-content>
 </mat-card>
